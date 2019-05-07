@@ -8,7 +8,8 @@
 
 import BaseHTTPServer, SimpleHTTPServer
 import ssl
+import sys
 
-httpd = BaseHTTPServer.HTTPServer(('', 443), SimpleHTTPServer.SimpleHTTPRequestHandler)
+httpd = BaseHTTPServer.HTTPServer(('', sys.argv[1]), SimpleHTTPServer.SimpleHTTPRequestHandler)
 httpd.socket = ssl.wrap_socket (httpd.socket, certfile='./server.pem', server_side=True)
 httpd.serve_forever()

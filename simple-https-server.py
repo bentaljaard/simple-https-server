@@ -10,6 +10,7 @@ import BaseHTTPServer, SimpleHTTPServer
 import ssl
 import sys
 
-httpd = BaseHTTPServer.HTTPServer(('', sys.argv[1]), SimpleHTTPServer.SimpleHTTPRequestHandler)
+httpd = BaseHTTPServer.HTTPServer(('', int(sys.argv[1])), SimpleHTTPServer.SimpleHTTPRequestHandler)
 httpd.socket = ssl.wrap_socket (httpd.socket, certfile='./server.pem', server_side=True)
+print("Server started on " + sys.argv[1])
 httpd.serve_forever()
